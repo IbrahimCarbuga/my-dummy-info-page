@@ -9,8 +9,8 @@ export const LoginInfoDropdown = () => {
       </Dropdown.Toggle>
 
       <Dropdown.Menu>
-        <Dropdown.Item href="#/action-1">Email Gelecek</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Logout</Dropdown.Item>
+        <Dropdown.Item>Email gelecek</Dropdown.Item>
+        <Dropdown.Item onClick={() =>localStorage.removeItem('user')}>Logout</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
   );

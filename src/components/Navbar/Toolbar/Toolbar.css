@@ -3,6 +3,7 @@
   width: 100%;
   background: black;
   height: 3rem;
+  top: 0;
 }
 .toolbar-navigation {
   display: flex;

@@ -15,3 +15,8 @@ code {
 #root {
   height: 100%;
 }
+
+.pageContainer {
+  margin-top: 4rem;
+  margin-bottom: 7rem;  
+}

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 export const ContactUsPage = () => {
   const countryList = [
@@ -22,18 +22,11 @@ export const ContactUsPage = () => {
 
   const submit = (e: any) => {
     e.preventDefault();
-    alert(JSON.stringify({ user }));
-    // fetch("/api", {
-    //   method: "POST",
-    //   body: JSON.stringify({ user }),
-    //   headers: { "Content-Type": "application/json" },
-    // })
-    //   .then((res) => res.json())
-    //   .then((json) => setUser(json.user));
+    alert(JSON.stringify(user));
   };
 
   return (
-    <Container>
+    <div className="container pageContainer">
       <Form onSubmit={submit}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>Name</Form.Label>
@@ -75,13 +68,17 @@ export const ContactUsPage = () => {
             onChange={(e) => setUser({ ...user, textField: e.target.value })}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="countryDropdown">
+        <Form.Group className="mb-3" controlId="country">
           <Form.Label>Country</Form.Label>
-          <Form.Control as="select" value={user.country} onChange={(e) => setUser({ ...user, country: e.target.value })}>
+          <Form.Control
+            as="select"
+            name="country"
+            onChange={(e) => 
+              setUser({ ...user, country: e.target.value })
+            }
+          >
             {countryList.map((country) => (
-              <option
-                value={user.country}
-                key={country.id}>
+              <option value={country.id} key={country.id}>
                 {country.name}
               </option>
             ))}
@@ -92,6 +89,6 @@ export const ContactUsPage = () => {
           Send
         </Button>
       </Form>
-    </Container>
+    </div>
   );
 };

@@ -1,10 +1,14 @@
-import React from "react"
+import React, { Suspense } from "react"
+import { useTranslation } from 'react-i18next';
 
 export const Home = () => {
+    const { t } = useTranslation();
     document.title = "Home Page"
     return (
-        <div className="container" style={{minHeight:"95vh"}}>
-            <h2 className="center">Home Page</h2>
+        <Suspense fallback="Loading..">
+        <div className="container pageContainer" >
+            <h2 className="center">{t("Home")}</h2>
         </div>
+        </Suspense>
     )
 }
