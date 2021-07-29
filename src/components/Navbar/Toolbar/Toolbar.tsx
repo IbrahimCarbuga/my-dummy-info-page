@@ -1,4 +1,7 @@
 import React from 'react';
+import { LocaleDropdown } from '../../LocaleDropdown';
+import { LoginInfoDropdown } from '../../LoginInfoDropdown';
+import { LoginModal } from '../../LoginModal';
 import {DrawerToggleButton} from '../DrawerToggleButton/DrawerToggleButton';
 import { NavItem, navItemList } from '../utils';
 import './Toolbar.css';
@@ -35,7 +38,10 @@ export const Toolbar: React.FC<Props> = ({ selectedTabIndex, drawerClickHandler,
       
       <div className="toolbar-toggle-button">
         <DrawerToggleButton click={drawerClickHandler} />
-      </div>
+      </div>      
+      <LoginInfoDropdown/>
+      <LoginModal/>
+      <LocaleDropdown/>
     </nav>
   </header>
 );
