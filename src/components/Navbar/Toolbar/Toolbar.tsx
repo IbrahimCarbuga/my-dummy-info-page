@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 import { LocaleDropdown } from "../../LocaleDropdown";
 import { LoginInfoDropdown } from "../../LoginInfoDropdown";
 import { LoginModal } from "../../LoginModal";
@@ -20,6 +21,7 @@ export const Toolbar: React.FC<Props> = ({
   selectRoute,
   logout,
 }) => {
+  const { t } = useTranslation();
   const [showModal, setShowModal] = useState(false);
 
   return (
@@ -51,7 +53,7 @@ export const Toolbar: React.FC<Props> = ({
         ) : (
           <>
             <Button variant="primary" onClick={() => setShowModal(true)}>
-              Login
+              {t("Login")}
             </Button>
             <LoginModal show={showModal} close={() => setShowModal(false)} />
           </>

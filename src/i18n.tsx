@@ -5,23 +5,44 @@ i18n.use(LanguageDetector).init({
   resources: {
     tr: {
       translations: {
-       Home: "Ana Sayfa"
+       Home: "Ana Sayfa",
+       Name: "İsim",
+       Email: "Email Adresi",
+       PhoneNumber: "Telefon Numarası",
+       TextField: "Açıklama",
+       Country: "Ülke",
+       Send: "Gönder",
+       LoginModal: "Giriş Sayfası",
+       Password: "Şifre",
+       Close: "Kapat",
+       Login: "Giriş",
+       FooterMessage: "Tüm hakları saklıdır.."
       }
     },
     en: {
       translations: {
-       Home: "Home Page"
+       Home: "Home Page",
+       Name: "Name",
+       Email: "Email Address",
+       PhoneNumber: "Phone Number",
+       TextField: "Description",
+       Country: "Country",
+       Send: "Send",
+       LoginModal: "Login Modal",
+       Password: "Password",
+       Close: "Close",
+       Login: "Login",
+       FooterMessage: "All rights reserved.."
       }
     },
   },
   fallbackLng: "tr",
   debug: true,
 
-  // have a common namespace used around the full app
   ns: ["translations"],
   defaultNS: "translations",
 
-  keySeparator: false, // we use content as keys
+  keySeparator: false, 
 
   interpolation: {
     formatSeparator: ","

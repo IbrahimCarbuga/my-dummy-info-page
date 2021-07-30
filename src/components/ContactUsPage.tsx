@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useTranslation } from "react-i18next";
 
 export const ContactUsPage = () => {
+  const { t } = useTranslation();
   const countryList = [
     { id: "TR", name: "Turkey" },
     { id: "US", name: "United States of America" },
@@ -29,37 +31,34 @@ export const ContactUsPage = () => {
     <div className="container pageContainer">
       <Form onSubmit={submit}>
         <Form.Group className="mb-3" controlId="formBasicName">
-          <Form.Label>Name</Form.Label>
+          <Form.Label>{t("Name")}</Form.Label>
           <Form.Control
             type="text"
-            placeholder="Enter Name"
             name="userName"
             value={user.userName}
             onChange={(e) => setUser({ ...user, userName: e.target.value })}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicEmail">
-          <Form.Label>Email address</Form.Label>
+          <Form.Label>{t("Email")}</Form.Label>
           <Form.Control
             type="email"
-            placeholder="Enter email"
             name="email"
             value={user.email}
             onChange={(e) => setUser({ ...user, email: e.target.value })}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="formBasicPhoneNumber">
-          <Form.Label>Phone Number</Form.Label>
+          <Form.Label>{t("PhoneNumber")}</Form.Label>
           <Form.Control
             type="number"
-            placeholder="Phone Number"
             name="phone"
             value={user.phone}
             onChange={(e) => setUser({ ...user, phone: e.target.value })}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="textField">
-          <Form.Label>Text Field</Form.Label>
+          <Form.Label>{t("TextField")}</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
@@ -69,7 +68,7 @@ export const ContactUsPage = () => {
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="country">
-          <Form.Label>Country</Form.Label>
+          <Form.Label>{t("Country")}</Form.Label>
           <Form.Control
             as="select"
             name="country"
@@ -86,7 +85,7 @@ export const ContactUsPage = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-          Send
+        {t("Send")}
         </Button>
       </Form>
     </div>
