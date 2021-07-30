@@ -16,7 +16,8 @@ i18n.use(LanguageDetector).init({
        Password: "Şifre",
        Close: "Kapat",
        Login: "Giriş",
-       FooterMessage: "Tüm hakları saklıdır.."
+       FooterMessage: "Tüm hakları saklıdır..",
+       ContactUsPage: "İletişim"
       }
     },
     en: {
@@ -32,7 +33,8 @@ i18n.use(LanguageDetector).init({
        Password: "Password",
        Close: "Close",
        Login: "Login",
-       FooterMessage: "All rights reserved.."
+       FooterMessage: "All rights reserved..",
+       ContactUsPage: "Contact Us"
       }
     },
   },

@@ -37,7 +37,7 @@ export const Toolbar: React.FC<Props> = ({
                 } `}
                 onClick={() => selectRoute(navItem)}
               >
-                {navItem.name}
+                {t(navItem.name)}
               </li>
             ))}
           </ul>
