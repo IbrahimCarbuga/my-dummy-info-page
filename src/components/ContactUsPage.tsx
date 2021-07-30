@@ -5,8 +5,8 @@ import { useTranslation } from "react-i18next";
 export const ContactUsPage = () => {
   const { t, i18n } = useTranslation();
   let countryList = [];
-  if (i18n.language === "tr"){
-     countryList = [
+  if (i18n.language === "tr") {
+    countryList = [
       { id: "TR", name: "Türkiye" },
       { id: "US", name: "Amerika Birleşik Devletleri" },
       { id: "GB", name: "Birleşik Krallık" },
@@ -16,8 +16,8 @@ export const ContactUsPage = () => {
       { id: "BR", name: "Brezilya" },
       { id: "ZW", name: "Zimbabve" },
     ];
-  } else{
-     countryList = [
+  } else {
+    countryList = [
       { id: "TR", name: "Turkey" },
       { id: "US", name: "United States of America" },
       { id: "GB", name: "United Kingdom" },
@@ -28,7 +28,7 @@ export const ContactUsPage = () => {
       { id: "ZW", name: "Zimbabwe" },
     ];
   }
-  
+
   const [user, setUser] = useState({
     userName: "",
     email: "",
@@ -87,9 +87,7 @@ export const ContactUsPage = () => {
           <Form.Control
             as="select"
             name="country"
-            onChange={(e) => 
-              setUser({ ...user, country: e.target.value })
-            }
+            onChange={(e) => setUser({ ...user, country: e.target.value })}
           >
             {countryList.map((country) => (
               <option value={country.id} key={country.id}>
@@ -100,7 +98,7 @@ export const ContactUsPage = () => {
         </Form.Group>
 
         <Button variant="primary" type="submit">
-        {t("Send")}
+          {t("Send")}
         </Button>
       </Form>
     </div>
