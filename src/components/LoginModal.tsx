@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../redux/action/user";
 import { LocaleDropdown } from "./LocaleDropdown";
 
 type Props = {
@@ -10,6 +12,7 @@ type Props = {
 
 export const LoginModal: React.FC<Props> = ({ show, close }) => {
   const { t } = useTranslation();
+  const dispatch = useDispatch()
   const [user, setUser] = useState({
     name: "",
     email: "",
@@ -17,6 +20,7 @@ export const LoginModal: React.FC<Props> = ({ show, close }) => {
   });
   const login = () => {
     localStorage.setItem("user", JSON.stringify(user));
+    dispatch(loginUser({name: user.name, email: user.email}))
     close();
   };
 

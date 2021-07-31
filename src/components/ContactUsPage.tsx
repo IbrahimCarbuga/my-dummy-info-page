@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
+import { UserState } from "../redux/model/user";
 
 export const ContactUsPage = () => {
   const { t, i18n } = useTranslation();
+  const userInfo = useSelector((state: UserState) => state.user);
   let countryList = [];
   if (i18n.language === "tr") {
     countryList = [
@@ -28,23 +32,37 @@ export const ContactUsPage = () => {
       { id: "ZW", name: "Zimbabwe" },
     ];
   }
-
   const [user, setUser] = useState({
     userName: "",
     email: "",
     phone: "",
     textField: "",
-    country: "",
+    country: "TR",
   });
 
+  useEffect(() => {
+    if (userInfo) {
+      setUser({ ...user, userName: userInfo.name, email: userInfo.email });
+    }
+  }, [userInfo]);
+
+  const [validated, setValidated] = useState(false);
+
   const submit = (e: any) => {
-    e.preventDefault();
-    alert(JSON.stringify(user));
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    } else {
+      alert(JSON.stringify(user));
+    }
+
+    setValidated(true);
   };
 
   return (
     <div className="container pageContainer">
-      <Form onSubmit={submit}>
+      <Form onSubmit={submit} noValidate validated={validated}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>{t("Name")}</Form.Label>
           <Form.Control
@@ -57,6 +75,7 @@ export const ContactUsPage = () => {
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label>{t("Email")}</Form.Label>
           <Form.Control
+            required
             type="email"
             name="email"
             value={user.email}
@@ -66,6 +85,7 @@ export const ContactUsPage = () => {
         <Form.Group className="mb-3" controlId="formBasicPhoneNumber">
           <Form.Label>{t("PhoneNumber")}</Form.Label>
           <Form.Control
+            required
             type="number"
             name="phone"
             value={user.phone}

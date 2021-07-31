@@ -5,4 +5,4 @@ export type NavItem = {
   }
 
 export const navItemList: Array<NavItem> = [{tabIndex: 0 , name: "Home", path: "/"},
-{tabIndex: 1 , name: "ContactUsPage", path:"contactUs"}];
+{tabIndex: 1 , name: "ContactUsPage", path:"/contactUs"}];

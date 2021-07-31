@@ -6,14 +6,12 @@ type Props = {
   show: boolean;
   selectedTabIndex: number;
   selectRoute: (Route: NavItem) => void;
-  logout: () => void;
 }
 
 export const SideDrawer: React.FC<Props> = ({
   show,
   selectedTabIndex,
-  selectRoute,
-  logout,
+  selectRoute
 }) => {
   let drawerClasses = 'side-drawer';
 

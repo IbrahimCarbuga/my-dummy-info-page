@@ -1,9 +1,9 @@
-import React, {useState } from 'react';
+import React, {useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import {Backdrop} from './Backdrop/Backdrop';
 import {SideDrawer} from './SideDrawer/SideDrawer';
 import {Toolbar} from './Toolbar/Toolbar';
-import { NavItem } from './utils';
+import { NavItem, navItemList } from './utils';
 
 export const Navbar = () => {
   const [sideDrawerOpen, setSideDrawerOper] = useState(false);
@@ -25,6 +25,30 @@ export const Navbar = () => {
     setSideDrawerOper(false);
   };
 
+  useEffect(() => {
+    let unmounted = false;
+    let unregisterCallback: () => void;
+
+    if (!unmounted) {
+      //init tab selection
+     const currentTabIndex = navItemList.find((nv) => nv.path === history.location.pathname);
+     if ( currentTabIndex !== undefined){
+      setSelectedTabIndex(currentTabIndex.tabIndex);
+     }
+
+      unregisterCallback = history.listen((location) => {
+        const currentTabIndex = navItemList.find((nv) => nv.path === location.pathname);
+        if ( currentTabIndex !== undefined){
+         setSelectedTabIndex(currentTabIndex.tabIndex);
+        }
+      });
+    }
+    return () => {
+      unmounted = true;
+      if (unregisterCallback) unregisterCallback();
+    };
+  }, [history]);
+
   const render = () => {
     let backdrop;
 
@@ -33,12 +57,11 @@ export const Navbar = () => {
     }
     return (
       <>
-        <Toolbar selectedTabIndex={selectedTabIndex} drawerClickHandler={drawerToggleClickHandler} selectRoute={selectRoute} logout={()=>{}} />
+        <Toolbar selectedTabIndex={selectedTabIndex} drawerClickHandler={drawerToggleClickHandler} selectRoute={selectRoute}/>
         <SideDrawer
           selectedTabIndex={selectedTabIndex}
           show={sideDrawerOpen}
-          selectRoute={selectRoute}
-          logout={()=>{}}
+          selectRoute={selectRoute}         
         />
         {backdrop}
       </>

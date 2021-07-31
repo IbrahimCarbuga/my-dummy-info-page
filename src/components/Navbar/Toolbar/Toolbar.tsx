@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import { UserState } from "../../../redux/model/user";
 import { LocaleDropdown } from "../../LocaleDropdown";
 import { LoginInfoDropdown } from "../../LoginInfoDropdown";
 import { LoginModal } from "../../LoginModal";
@@ -12,18 +14,17 @@ type Props = {
   drawerClickHandler: () => void;
   selectRoute: (Route: NavItem) => void;
   selectedTabIndex: number;
-  logout: () => void;
 };
 
 export const Toolbar: React.FC<Props> = ({
   selectedTabIndex,
   drawerClickHandler,
-  selectRoute,
-  logout,
+  selectRoute
 }) => {
   const { t } = useTranslation();
+  const userInfo = useSelector((state: UserState) => state.user);
   const [showModal, setShowModal] = useState(false);
-
+  console.log(userInfo)
   return (
     <header className="toolbar">
       <nav className="toolbar-navigation">
@@ -48,7 +49,7 @@ export const Toolbar: React.FC<Props> = ({
         <div className="toolbar-toggle-button">
           <DrawerToggleButton click={drawerClickHandler} />
         </div>
-        {localStorage.getItem("user") !== null ? (
+        {userInfo ? (
           <LoginInfoDropdown />
         ) : (
           <>
