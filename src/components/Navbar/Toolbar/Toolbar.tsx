@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { UserState } from "../../../redux/model/user";
 import { LocaleDropdown } from "../../LocaleDropdown";
 import { LoginInfoDropdown } from "../../LoginInfoDropdown";
@@ -24,7 +24,6 @@ export const Toolbar: React.FC<Props> = ({
   const { t } = useTranslation();
   const userInfo = useSelector((state: UserState) => state.user);
   const [showModal, setShowModal] = useState(false);
-  console.log(userInfo)
   return (
     <header className="toolbar">
       <nav className="toolbar-navigation">

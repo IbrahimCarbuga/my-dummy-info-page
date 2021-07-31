@@ -52,7 +52,6 @@ export const ContactUsPage = () => {
     const form = e.currentTarget;
     if (form.checkValidity() === false) {
       e.preventDefault();
-      e.stopPropagation();
     } else {
       alert(JSON.stringify(user));
     }

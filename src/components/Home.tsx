@@ -1,7 +1,5 @@
 import React, { Suspense } from "react";
 import { useTranslation } from "react-i18next";
-import { useSelector } from "react-redux";
-import { UserState } from "../redux/model/user";
 
 export const Home = () => {
   const { t } = useTranslation();
