@@ -5,6 +5,10 @@ export type User = {
 
 export type UserState = {
   user?: User;
+  language?: string;
 };
+
+
+
 
 export const initialUserState: UserState = {};

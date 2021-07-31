@@ -1,9 +1,12 @@
 import { Reducer } from "redux";
-import { LOGIN, LOGOUT } from "../actionType/user";
+import { LOGIN, LOGOUT, SET_LANGUAGE } from "../actionType/user";
 import { Action } from "../model/Action";
-import { initialUserState, User, UserState } from "../model/user";
+import { initialUserState, UserState } from "../model/user";
 
-const userReducer: Reducer<UserState, Action> = (state: UserState = initialUserState, action: Action): UserState => {
+const userReducer: Reducer<UserState, Action> = (
+  state: UserState = initialUserState,
+  action: Action
+): UserState => {
   switch (action.type) {
     case LOGIN:
       return {
@@ -13,7 +16,12 @@ const userReducer: Reducer<UserState, Action> = (state: UserState = initialUserS
 
     case LOGOUT:
       return initialUserState;
-   //TODO localStorage buradan setlenebilir.
+
+    case SET_LANGUAGE:
+      return {
+        ...state,
+        language: action.payload,
+      };
   }
   return initialUserState;
 };

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { NavItem, navItemList } from '../utils';
 import './SideDrawer.css';
 
@@ -14,7 +15,7 @@ export const SideDrawer: React.FC<Props> = ({
   selectRoute
 }) => {
   let drawerClasses = 'side-drawer';
-
+  const { t } = useTranslation();
   if (show) {
     drawerClasses = 'side-drawer open';
   }
@@ -30,7 +31,7 @@ export const SideDrawer: React.FC<Props> = ({
             } `}
             onClick={() => selectRoute(navItem)}
           >
-            {navItem.name}
+            {t(navItem.name)}
           </li>
         ))}
       </ul>
