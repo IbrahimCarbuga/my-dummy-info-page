@@ -17,7 +17,8 @@ i18n.use(LanguageDetector).init({
        Close: "Kapat",
        Login: "Giriş",
        FooterMessage: "Tüm hakları saklıdır..",
-       ContactUsPage: "İletişim"
+       ContactUsPage: "İletişim",
+       Logout: "Çıkış"
       }
     },
     en: {
@@ -34,7 +35,8 @@ i18n.use(LanguageDetector).init({
        Close: "Close",
        Login: "Login",
        FooterMessage: "All rights reserved..",
-       ContactUsPage: "Contact Us"
+       ContactUsPage: "Contact Us",
+       Logout: "Logout"
       }
     },
   },

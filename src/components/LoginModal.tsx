@@ -16,7 +16,7 @@ export const LoginModal: React.FC<Props> = ({ show, close }) => {
     password: "",
   });
   const login = () => {
-    localStorage.setItem('user', JSON.stringify(user))
+    localStorage.setItem("user", JSON.stringify(user));
     close();
   };
 
@@ -26,43 +26,43 @@ export const LoginModal: React.FC<Props> = ({ show, close }) => {
         <Modal.Header>
           <Modal.Title>{t("LoginModal")}</Modal.Title>
         </Modal.Header>
-
-        <Modal.Body>
-          <Form>
-            <LocaleDropdown />
-            <Form.Group className="mb-3" controlId="formBasicName">
-              <Form.Label>{t("Name")}</Form.Label>
-              <Form.Control
-                type="text"
-                name="name"
-                onChange={(e) => setUser({ ...user, name: e.target.value })}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
-              <Form.Label>{t("Email")}</Form.Label>
-              <Form.Control
-                type="email"
-                name="email"
-                onChange={(e) => setUser({ ...user, email: e.target.value })}
-              />
-            </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicPassword">
-              <Form.Label>{t("Password")}</Form.Label>
-              <Form.Control
-                type="password"
-                name="password"
-                onChange={(e) => setUser({ ...user, password: e.target.value })}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-
+          <Modal.Body>
+            <Form>
+              <LocaleDropdown />
+              <Form.Group className="mb-3" controlId="formBasicName">
+                <Form.Label>{t("Name")}</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="name"
+                  onChange={(e) => setUser({ ...user, name: e.target.value })}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>{t("Email")}</Form.Label>
+                <Form.Control
+                  type="email"
+                  name="email"
+                  onChange={(e) => setUser({ ...user, email: e.target.value })}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Label>{t("Password")}</Form.Label>
+                <Form.Control
+                  type="password"
+                  name="password"
+                  onChange={(e) =>
+                    setUser({ ...user, password: e.target.value })
+                  }
+                />
+              </Form.Group>
+            </Form>
+          </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => close()}>
             {t("Close")}
           </Button>
           <Button variant="primary" onClick={login}>
-          {t("Login")}
+            {t("Login")}
           </Button>
         </Modal.Footer>
       </Modal>
