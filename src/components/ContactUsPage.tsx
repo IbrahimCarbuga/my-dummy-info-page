@@ -53,6 +53,7 @@ export const ContactUsPage = () => {
     if (form.checkValidity() === false) {
       e.preventDefault();
     } else {
+      console.log(JSON.stringify(user))
       alert(JSON.stringify(user));
     }
 
@@ -61,7 +62,7 @@ export const ContactUsPage = () => {
 
   return (
     <div className="container pageContainer">
-      <Form onSubmit={submit} noValidate validated={validated}>
+      <Form noValidate validated={validated}>
         <Form.Group className="mb-3" controlId="formBasicName">
           <Form.Label>{t("Name")}</Form.Label>
           <Form.Control
@@ -116,7 +117,7 @@ export const ContactUsPage = () => {
           </Form.Control>
         </Form.Group>
 
-        <Button variant="primary" type="submit">
+        <Button onClick={submit} variant="primary" >
           {t("Send")}
         </Button>
       </Form>
