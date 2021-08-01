@@ -9,6 +9,7 @@ import { LoginModal } from "../../LoginModal";
 import { DrawerToggleButton } from "../DrawerToggleButton/DrawerToggleButton";
 import { NavItem, navItemList } from "../utils";
 import "./Toolbar.css";
+import {FaBuffer} from "react-icons/fa"
 
 type Props = {
   drawerClickHandler: () => void;
@@ -27,6 +28,7 @@ export const Toolbar: React.FC<Props> = ({
   return (
     <header className="toolbar">
       <nav className="toolbar-navigation">
+      <div className="toolbar-logo"><FaBuffer style={{backgroundColor:"white"}}/></div>
         <div className="toolbar-navigation-items">
           <ul>
             {navItemList.map((navItem: NavItem) => (
@@ -42,9 +44,8 @@ export const Toolbar: React.FC<Props> = ({
             ))}
           </ul>
         </div>
-        <div className="toolbar-logo">{/* <img src={logo} /> */}</div>
-        <div className="spacer" />
-
+      <div className="spacer" />
+       
         <div className="toolbar-toggle-button">
           <DrawerToggleButton click={drawerClickHandler} />
         </div>
@@ -58,7 +59,6 @@ export const Toolbar: React.FC<Props> = ({
             <LoginModal show={showModal} close={() => setShowModal(false)} />
           </>
         )}
-
         <LocaleDropdown />
       </nav>
     </header>
