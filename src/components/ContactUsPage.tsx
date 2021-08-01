@@ -36,7 +36,7 @@ export const ContactUsPage = () => {
     userName: "",
     email: "",
     phone: "",
-    textField: "",
+    description: "",
     country: "TR",
   });
 
@@ -91,14 +91,14 @@ export const ContactUsPage = () => {
             onChange={(e) => setUser({ ...user, phone: e.target.value })}
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="textField">
+        <Form.Group className="mb-3" controlId="description">
           <Form.Label>{t("TextField")}</Form.Label>
           <Form.Control
             as="textarea"
             rows={3}
-            name="textField"
-            value={user.textField}
-            onChange={(e) => setUser({ ...user, textField: e.target.value })}
+            name="description"
+            value={user.description}
+            onChange={(e) => setUser({ ...user, description: e.target.value })}
           />
         </Form.Group>
         <Form.Group className="mb-3" controlId="country">
