@@ -7,7 +7,7 @@ export const Home = () => {
   return (
     <Suspense fallback="Loading..">
       <div className="container pageContainer">
-        <h2 className="center">{t("Home")}</h2>
+        <h2 className="center">{t("HomeLabel")}</h2>
       </div>
     </Suspense>
   );

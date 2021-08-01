@@ -5,7 +5,8 @@ i18n.use(LanguageDetector).init({
   resources: {
     tr: {
       translations: {
-       Home: "Ana Sayfa",
+       Home: "Dummy Project",
+       HomeLabel: "Merhaba. Ben Anasayfayım",
        Name: "İsim",
        Email: "Email Adresi",
        PhoneNumber: "Telefon Numarası",
@@ -23,7 +24,8 @@ i18n.use(LanguageDetector).init({
     },
     en: {
       translations: {
-       Home: "Home Page",
+       Home: "Dummy Project",
+       HomeLabel: "Hello. I'm Home Page",
        Name: "Name",
        Email: "Email Address",
        PhoneNumber: "Phone Number",
