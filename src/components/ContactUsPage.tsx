@@ -44,7 +44,7 @@ export const ContactUsPage = () => {
     if (userInfo) {
       setUser({ ...user, userName: userInfo.name, email: userInfo.email });
     }
-  }, [userInfo]);
+  }, [user, userInfo]);
 
   const [validated, setValidated] = useState(false);
 
@@ -59,8 +59,8 @@ export const ContactUsPage = () => {
 
     setValidated(true);
   };
-
-  return (
+document.title = "Dummy Project";
+  return (    
     <div className="container pageContainer">
       <Form noValidate validated={validated}>
         <Form.Group className="mb-3" controlId="formBasicName">
