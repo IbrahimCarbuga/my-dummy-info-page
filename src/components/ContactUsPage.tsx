@@ -4,6 +4,7 @@ import { Button, Form } from "react-bootstrap";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { UserState } from "../redux/model/user";
+import { Typeahead } from "react-bootstrap-typeahead";
 
 export const ContactUsPage = () => {
   const { t, i18n } = useTranslation();
@@ -42,7 +43,11 @@ export const ContactUsPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      setUser((prevState) => ({...prevState, userName: userInfo.name, email: userInfo.email}) )
+      setUser((prevState) => ({
+        ...prevState,
+        userName: userInfo.name,
+        email: userInfo.email,
+      }));
       // setUser(()=>{ ...user, userName: userInfo.name, email: userInfo.email });
     }
   }, [userInfo]);
@@ -54,14 +59,14 @@ export const ContactUsPage = () => {
     if (form.checkValidity() === false) {
       e.preventDefault();
     } else {
-      console.log(JSON.stringify(user))
+      console.log(JSON.stringify(user));
       alert(JSON.stringify(user));
     }
 
     setValidated(true);
   };
-document.title = "Dummy Project";
-  return (    
+  document.title = "Dummy Project";
+  return (
     <div className="container pageContainer">
       <Form noValidate validated={validated}>
         <Form.Group className="mb-3" controlId="formBasicName">
@@ -105,20 +110,16 @@ document.title = "Dummy Project";
         </Form.Group>
         <Form.Group className="mb-3" controlId="country">
           <Form.Label>{t("Country")}</Form.Label>
-          <Form.Control
-            as="select"
-            name="country"
-            onChange={(e) => setUser({ ...user, country: e.target.value })}
+          <Typeahead
+            id="country"
+            options={countryList}
+            labelKey="name"
+            onChange={(e) => {if(e.length > 0) setUser({ ...user, country: e[0].id })}}
           >
-            {countryList.map((country) => (
-              <option value={country.id} key={country.id}>
-                {country.name}
-              </option>
-            ))}
-          </Form.Control>
+          </Typeahead>
         </Form.Group>
 
-        <Button onClick={submit} variant="primary" >
+        <Button onClick={submit} variant="primary">
           {t("Send")}
         </Button>
       </Form>

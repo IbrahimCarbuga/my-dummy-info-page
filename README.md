@@ -1,4 +1,4 @@
-To run the project codes:
+To run the project codes(Please Run in Visual Studio Code IDE):
 
 1 -) In the project folder run "npm install" command.<br>
 2 -) To build project codes run "npm run webpack".<br>
