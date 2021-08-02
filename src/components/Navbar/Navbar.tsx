@@ -1,16 +1,17 @@
-import React, {useEffect, useState } from 'react';
-import { useHistory } from 'react-router';
-import {Backdrop} from './Backdrop/Backdrop';
-import {SideDrawer} from './SideDrawer/SideDrawer';
-import {Toolbar} from './Toolbar/Toolbar';
-import { NavItem, navItemList } from './utils';
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router";
+import { LoginModal } from "../LoginModal";
+import { Backdrop } from "./Backdrop/Backdrop";
+import { SideDrawer } from "./SideDrawer/SideDrawer";
+import { Toolbar } from "./Toolbar/Toolbar";
+import { NavItem, navItemList } from "./utils";
 
 export const Navbar = () => {
   const [sideDrawerOpen, setSideDrawerOper] = useState(false);
   const [selectedTabIndex, setSelectedTabIndex] = useState<number>(0);
 
   const history = useHistory();
-
+  const [showModal, setShowModal] = useState(false);
   const selectRoute = (navItem: NavItem) => {
     setSelectedTabIndex(navItem.tabIndex);
     setSideDrawerOper(false);
@@ -31,15 +32,19 @@ export const Navbar = () => {
 
     if (!unmounted) {
       //init tab selection
-     const currentTabIndex = navItemList.find((nv) => nv.path === history.location.pathname);
-     if ( currentTabIndex !== undefined){
-      setSelectedTabIndex(currentTabIndex.tabIndex);
-     }
+      const currentTabIndex = navItemList.find(
+        (nv) => nv.path === history.location.pathname
+      );
+      if (currentTabIndex !== undefined) {
+        setSelectedTabIndex(currentTabIndex.tabIndex);
+      }
 
       unregisterCallback = history.listen((location) => {
-        const currentTabIndex = navItemList.find((nv) => nv.path === location.pathname);
-        if ( currentTabIndex !== undefined){
-         setSelectedTabIndex(currentTabIndex.tabIndex);
+        const currentTabIndex = navItemList.find(
+          (nv) => nv.path === location.pathname
+        );
+        if (currentTabIndex !== undefined) {
+          setSelectedTabIndex(currentTabIndex.tabIndex);
         }
       });
     }
@@ -57,12 +62,19 @@ export const Navbar = () => {
     }
     return (
       <>
-        <Toolbar selectedTabIndex={selectedTabIndex} drawerClickHandler={drawerToggleClickHandler} selectRoute={selectRoute}/>
+        <Toolbar
+          selectedTabIndex={selectedTabIndex}
+          drawerClickHandler={drawerToggleClickHandler}
+          selectRoute={selectRoute}
+          loginClick={() => setShowModal(true)}
+        />
         <SideDrawer
           selectedTabIndex={selectedTabIndex}
           show={sideDrawerOpen}
-          selectRoute={selectRoute}         
+          selectRoute={selectRoute}
+          loginClick={() => setShowModal(true)}
         />
+        <LoginModal show={showModal} close={() => setShowModal(false)} />
         {backdrop}
       </>
     );

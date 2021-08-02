@@ -48,9 +48,17 @@
 .spacer {
   flex: 1;
 }
+.action-buttons{
+  display: flex;
+  align-items: center;
+}
+
 @media (max-width: 768px) {
   .toolbar-navigation-items {
     display: none;
+ }
+ .action-buttons {
+   display: none;
  }
 }
 @media (min-width: 769px) {

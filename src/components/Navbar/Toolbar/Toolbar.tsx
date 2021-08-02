@@ -9,31 +9,40 @@ import { LoginModal } from "../../LoginModal";
 import { DrawerToggleButton } from "../DrawerToggleButton/DrawerToggleButton";
 import { NavItem, navItemList } from "../utils";
 import "./Toolbar.css";
-import {FaBuffer} from "react-icons/fa"
+import { FaBuffer } from "react-icons/fa";
 import { useHistory } from "react-router-dom";
 
 type Props = {
   drawerClickHandler: () => void;
   selectRoute: (Route: NavItem) => void;
   selectedTabIndex: number;
+  loginClick: () => void;
 };
 
 export const Toolbar: React.FC<Props> = ({
   selectedTabIndex,
   drawerClickHandler,
-  selectRoute
+  selectRoute,
+  loginClick
 }) => {
   const { t } = useTranslation();
   const userInfo = useSelector((state: UserState) => state.user);
-  const [showModal, setShowModal] = useState(false);
+ 
   const history = useHistory();
   console.log(history.location.pathname);
   return (
     <header className="toolbar">
       <nav className="toolbar-navigation">
-      <div className="toolbar-logo"><FaBuffer style={{backgroundColor:"white"}}/></div>
-      <div style={{color:"white",fontSize:"1.5rem",marginLeft:"1rem"}}>{t(navItemList.find((item)=> item.path === history.location.pathname)?.name || '')}</div>
-      <div className="spacer" />
+        <div className="toolbar-logo">
+          <FaBuffer style={{ backgroundColor: "white" }} />
+        </div>
+        <div style={{ color: "white", fontSize: "1.5rem", marginLeft: "1rem" }}>
+          {t(
+            navItemList.find((item) => item.path === history.location.pathname)
+              ?.name || ""
+          )}
+        </div>
+        <div className="spacer" />
         <div className="toolbar-navigation-items">
           <ul>
             {navItemList.map((navItem: NavItem) => (
@@ -49,21 +58,22 @@ export const Toolbar: React.FC<Props> = ({
             ))}
           </ul>
         </div>
-       
         <div className="toolbar-toggle-button">
-          <DrawerToggleButton click={drawerClickHandler} />
+            <DrawerToggleButton click={drawerClickHandler} />
+          </div>
+        <div className="action-buttons">          
+          {userInfo ? (
+            <LoginInfoDropdown />
+          ) : (
+            <>
+              <Button variant="primary" onClick={loginClick}>
+                {t("Login")}
+              </Button>
+             
+            </>
+          )}
+          <LocaleDropdown />
         </div>
-        {userInfo ? (
-          <LoginInfoDropdown />
-        ) : (
-          <>
-            <Button variant="primary" onClick={() => setShowModal(true)}>
-              {t("Login")}
-            </Button>
-            <LoginModal show={showModal} close={() => setShowModal(false)} />
-          </>
-        )}
-        <LocaleDropdown />
       </nav>
     </header>
   );

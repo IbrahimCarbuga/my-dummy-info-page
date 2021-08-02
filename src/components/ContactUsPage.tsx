@@ -42,9 +42,10 @@ export const ContactUsPage = () => {
 
   useEffect(() => {
     if (userInfo) {
-      setUser({ ...user, userName: userInfo.name, email: userInfo.email });
+      setUser((prevState) => ({...prevState, userName: userInfo.name, email: userInfo.email}) )
+      // setUser(()=>{ ...user, userName: userInfo.name, email: userInfo.email });
     }
-  }, [user, userInfo]);
+  }, [userInfo]);
 
   const [validated, setValidated] = useState(false);
 
